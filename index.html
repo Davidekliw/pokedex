@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="deu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./img/pokeball.png">
+    <title>Pokedex - View them all</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.min.css">
+</head>
+
+<body id="body" onload="init()">
+    <div id="loadContainer" class="loadContainer">
+        <img src="./img/pokeball.png" alt="">
+    </div>
+    <div class="headline">
+        <nav>
+            <div class="centerxy">
+                <img src="./img/pokeball.png" alt="" class="logo mirror-horizontal" title="Logo">
+                <h1>Pokedex</h1>
+                <img src="./img/pokeball.png" alt="" class="logo" title="Logo">
+            </div>
+            <div id="searchContainer" class="searchContainer">
+                <label for="search">Suche</label>
+                <input name="search" id="search" placeholder="mind. 3 Buchstaben" pattern="[A-Za-z]+"
+                    onkeyup="search(this.value)">
+                <div id="dropDownList" class="dropDownList d-flex" onclick="doNotClose(event)"></div>
+            </div>
+        </nav>
+        <div class="progress">
+            <div id="loadBar" class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="50"
+                aria-valuemin="0" aria-valuemax="400"></div>
+        </div>
+    </div>
+    <div class="relContainer">
+        <div id="dialog" class="dialog" onclick="closeWindow()">
+            <div id="position" class="centerxy position">
+                <div id="pokemonCard" onclick="doNotClose(event)">
+                    <h3 class="nameLine" id="pokemonName">Name</h3>
+                    <div id="imageOrder" class="imageOrder">
+                        <img onclick="loadACard('back')" class="arrow" id="back" src="./img/pokeball.png"
+                            title="zurück"></img>
+                        <img onclick="loadACard('forward')" class="arrow" id="forward" src="./img/pokeball.png"
+                            title="weiter"></img>
+                        <div class="frameStrip"></div>
+                        <div class="frameStrip smaler"></div>
+                        <div class="frameStrip xsmaler"></div>
+                        <div class="frameStrip xxsmaler"></div>
+                        <div class="frameStrip xxxsmaler"></div>
+                        <div class="frameStrip xxxxsmaler"></div>
+                        <div class="frameStrip xxxxxsmaler"></div>
+                        <img class="imageContainer" id="pokemonPicture" src="./img/pokeball.png"></img>
+                        <div class="frameStrip mirror-horizontal xxxxxsmaler" onclick="nextPokemon()"></div>
+                        <div class="frameStrip mirror-horizontal xxxxsmaler"></div>
+                        <div class="frameStrip mirror-horizontal xxxsmaler"></div>
+                        <div class="frameStrip mirror-horizontal xxsmaler"></div>
+                        <div class="frameStrip mirror-horizontal xsmaler"></div>
+                        <div class="frameStrip mirror-horizontal smaler"></div>
+                        <div class="frameStrip mirror-horizontal"></div>
+                    </div>
+                    <div class="detailsOrder">
+                        <div class="buttonsOrder" id="buttonsOrder">
+                            <div id="basicButton" class="cursor pad-0-16 btnCheckedDesign"
+                                onclick="showSelectedInformation('basic', 'stats', 'evolution')">Basics</div>
+                            <div id="statsButton" class="cursor pad-0-16"
+                                onclick="showSelectedInformation('stats', 'basic', 'evolution')">Stats</div>
+                            <div id="evolutionButton" class="cursor pad-0-16"
+                                onclick="showSelectedInformation('evolution', 'stats', 'basic')">Evolution</div>
+                        </div>
+                        <div class="statsTopOrder">
+                            <div id="basic" class="basics"></div>
+                            <div id="stats" class="stats d-none"></div>
+                            <div id="evolution" class="evolution d-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="allPoke" id="allPoke"></div>
+        <div class="infoCard"></div>
+        <div class="morebtn"><button class="btn btn-primary" id="morebtn" onclick="loadMore()">Mehr laden</button></div>
+        <footer>
+            <a href="./impressum.html">Impressum</a>
+        </footer>
+    </div>
+    <script>
+        const image = document.querySelector('.imageContainer');
+
+        image.addEventListener('animationend', async () => {
+            image.src = checkForPicturePath();
+            await fetchEvolution();
+            await getEvolution();
+        });
+    </script>
+    <script src="./fetch.js"></script>
+    <script src="./htmlScript.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

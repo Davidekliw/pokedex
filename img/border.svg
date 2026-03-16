@@ -1,0 +1,6 @@
+<svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+      <path id="lineAC" d="M 3 100 L 3 50 Q 3 3 50 3 L 100 3" fill="none" stroke-width="8" stroke-linecap="round"/>
+      <path id="lineAC" d="M 3 100 L 3 50 Q 3 3 50 3 L 100 3" fill="none" stroke-width="8" stroke-linecap="round" transform="scale(1, -1) translate(0, -600)"/>
+      <path id="lineAC" d="M 3 100 L 3 50 Q 3 3 50 3 L 100 3" fill="none" stroke-width="8" stroke-linecap="round" transform="scale(-1, 1) translate(-400, 0)"/>
+      <path id="lineAC" d="M 3 100 L 3 50 Q 3 3 50 3 L 100 3" fill="none" stroke-width="8" stroke-linecap="round" transform="scale(-1, -1) translate(-400,-600)"/>
+</svg>
