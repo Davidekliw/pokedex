@@ -1,0 +1,1 @@
+This project is a small Pokédex web application created for practice. It demonstrates how to fetch data from the PokéAPI and display Pokémon information using vanilla JavaScript, HTML and CSS. The goal of the project is to practice API usage and basic frontend development.
