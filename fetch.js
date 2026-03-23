@@ -96,14 +96,15 @@ async function getBorder() {
 }
 
 /**
- * is used generate the last Pokemon id in database is possible for use. get latest number minus 277 (that are the positions in database are cant use)
+ * Calculates the last usable Pokémon ID. latest number minus 277 (that are the positions in database are cant use)
+ * updated 277 to 326. currently the last 326 items in database are not useable
  * 
  * @returns - a calculatet number
  */
 async function generateLastPokemonID() {
     let lastOne = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
     lastOne = await lastOne.json();
-    lastOne = lastOne.count - 277;
+    lastOne = lastOne.count - 326;
     return lastOne;
 }
 
