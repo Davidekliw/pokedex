@@ -348,7 +348,7 @@ svg:hover {
     height: 56px;
     border-radius: 16px 16px 48px 48px;
     transition: background-color 1s linear;
-    animation: moveDown 1.5s linear;
+    animation: moveDown 1s linear;
 }
 
 @keyframes moveDown {
@@ -374,7 +374,7 @@ svg:hover {
     position: absolute;
     z-index: 1;
     border-radius: 10px;
-    animation: opacityUp 1.5s linear;
+    animation: opacityUp 1.2s linear;
     animation-iteration-count: 1;
     filter: drop-shadow(-20px -20px 0px rgba(0, 0, 0, 0.5))
 }
@@ -424,7 +424,7 @@ svg:hover {
     justify-content: space-between;
     margin-top: 8px;
     margin-bottom: 8px;
-    animation: moveUp 1.5s linear;
+    animation: moveUp 1s linear;
 }
 
 .basics {
@@ -435,7 +435,7 @@ svg:hover {
     justify-content: space-between;
     margin-top: 8px;
     margin-bottom: 8px;
-    animation: moveUp 1.5s linear;
+    animation: moveUp 1s linear;
     text-overflow: clip;
 }
 
@@ -448,7 +448,7 @@ svg:hover {
     align-items: center;
     margin-top: 8px;
     margin-bottom: 8px;
-    animation: moveUp 1.5s linear;
+    animation: moveUp 1s linear;
 }
 
 .evolution img {
@@ -504,6 +504,7 @@ svg:hover {
     justify-content: center;
     background-color: lightgray;
     border-radius: 48px 48px 16px 16px;
+    overflow: hidden;
 }
 
 .statsOrder {
@@ -530,7 +531,7 @@ footer a {
 
 @keyframes moveUp {
     0% {
-        transform: translate(0%, 50vh);
+        transform: translate(0%, 20vh);
     }
 }
 
