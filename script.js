@@ -7,11 +7,12 @@ let picture;
 let offset = 1;
 let loadRange = 0;
 let types = [];
+let ids = 0;
 
 const SPECIESURL = "https://pokeapi.co/api/v2/pokemon-species/";
 const POKEMONURL = "https://pokeapi.co/api/v2/pokemon/"
 const STARTURL = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=";
-const ALLURL = "https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0";
+const ALLURL = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
 
 
 let currentIndex = + -1; // Initial index for the dropdown
@@ -106,32 +107,6 @@ async function loadSearchElement(i) {
     document.getElementById('dropDownList').classList.remove('d-flex');
     await renderCard(i);
     document.getElementById('search').value = "";
-}
-
-/**
- * used to toggle the disable state from a button and the searchfild. Only active on load progress
- * 
- * @param {Boolean} toggle - true for disabled and false for enabled
- */
-function disableButton(toggle) {
-    document.getElementById('search').disabled = toggle;
-    document.getElementById('morebtn').disabled = toggle;
-    if (toggle == true) {
-        document.getElementById('morebtn').style.cursor = "not-allowed";
-    }
-    if (toggle == false) {
-        document.getElementById('morebtn').style.cursor = "pointer";
-    }
-}
-
-/**
- * is used to generate the loading Progress as dynamic bar
- * 
- * @param {Number} i - is the id of the currently processed Pokemon
- */
-function setProgressbarProgress(i) {
-    document.getElementById('loadBar').style.width = `${100 / (loadRange / (i))}%`;
-    document.getElementById('loadBar').innerHTML = `${i} von ${loadRange} ${currentSpecies['names'][5]['name']}`;
 }
 
 /**
@@ -260,15 +235,6 @@ async function checkkForValidDataAndRender(i) {
 }
 
 /**
- * is used to toogle show or hide the loadscreen 
- * 
- * @param {string} toogle - expected flex or none
- */
-function toogleLoadScreen(toogle) {
-    document.getElementById('loadContainer').style.display = toogle;
-}
-
-/**
  * is used to show a card with more details of a selected pokemon
  * 
  * @param {Number} numb - is the id of the currently processed Pokemon
@@ -293,6 +259,10 @@ async function renderCard(numb) {
     generateTypesArray();
     getStats();
     document.getElementById('basic').innerHTML = generateHTMLBasicsList();
+    setPictureAfterAnimation();
+    toggleOpacity();
+    await fetchEvolution();
+    await getEvolution();
 }
 
 /**
@@ -320,45 +290,16 @@ function generateSelectedPokemonId(direction) {
 async function loadACard(direction) {
     let selectedPokemon = generateSelectedPokemonId(direction);
     let lastPokemonId = await generateLastPokemonID();
-    if (selectedPokemon <= 0) {
-        await renderCard(lastPokemonId);
-    }
-    if (selectedPokemon > lastPokemonId) {
-        await renderCard('1');
-    }
     if (selectedPokemon > 0 && selectedPokemon <= lastPokemonId) {
         await renderCard(selectedPokemon);
     }
-}
-
-/**
- * Prevents the event from propagating (bubbling) to parent elements.
- * 
- * @param {Event} event 
- */
-function doNotClose(event) {
-    event.stopPropagation();
-}
-
-/**
- * is used to show or hide the dropdown List on search field
- * 
- */
-function toggleDropDownListView() {
-    document.getElementById('dropDownList').classList.toggle = 'd-flex';
-}
-
-/**
- * is used to close the Pokemon Detail Information Card and set default values for next using
- * 
- */
-function closeWindow() {
-    document.getElementById('position').style.display = 'none';
-    document.getElementById('dialog').style.display = 'none';
-    document.getElementById('pokemonPicture').src = "./img/pokeball.png";
-    document.getElementById('stats').innerHTML = "";
-    document.getElementById('body').style.overflow = "auto";
-    showSelectedInformation('basic', 'stats', 'evolution')
+    else if (selectedPokemon <= 0) {
+        await renderCard(lastPokemonId);
+    }
+    else {
+        await renderCard('1');
+    }
+    // document.querySelector('.imageContainer').classList.add('active');
 }
 
 /**
@@ -395,14 +336,10 @@ function generateTypesArraySRC(i) {
  * @returns - a Picture Path
  */
 function checkForPicturePath() {
-    let picture = currentPokemon?.sprites?.other?.dream_world?.front_default;
-    if (!picture) {
-        picture = currentPokemon?.sprites?.other?.home?.front_default;
-        if (!picture) {
-            picture = "./img/nothing.png";
-        }
-    }
-    return picture
+    return currentPokemon?.sprites?.other?.dream_world?.front_default
+        || currentPokemon?.sprites?.other?.home?.front_default
+        || currentPokemon?.sprites?.other['official-artwork']?.front_default
+        || "img/nothing.png";
 }
 
 /**
@@ -431,29 +368,6 @@ function changeFlavorText() {
             entry => entry.language.name === "en"
         );
     return foundEntry ? foundEntry.flavor_text : "nothing found";
-}
-
-/**
- * Determines the background color based on the Pokémon's species color.
- * If the species color is found in the predefined set, it returns the corresponding CSS variable or color.
- * If the color is not found, it defaults to black.
- * 
- * @returns - the Variable of a color or black if its not found
- */
-function setBackgroundColor() {
-    const colors = {
-        green: "var(--bs-green)",
-        red: "var(--bs-red)",
-        brown: "brown",
-        purple: "var(--bs-purple)",
-        blue: "var(--bs-cyan)",
-        yellow: "var(--bs-yellow)",
-        pink: "var(--bs-pink)",
-        white: "var(--bs-white)",
-        gray: "var(--bs-gray)"
-    }
-    let color = currentSpecies?.color?.name;
-    return colors[color] || "black";
 }
 
 /**

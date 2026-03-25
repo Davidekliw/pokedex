@@ -4,6 +4,10 @@ body {
     background: linear-gradient(83deg, rgba(207, 204, 199, 1) 0%, rgba(207, 185, 151, 1) 100%) !important;
 }
 
+.overFlow {
+    overflow: hidden;
+}
+
 h1 {
     margin: 20px !important;
 }
@@ -11,10 +15,6 @@ h1 {
 h2 {
     text-align: center;
     font-size: large !important;
-}
-
-.d_no {
-    display: none;
 }
 
 .gap-8 {
@@ -201,11 +201,6 @@ svg:hover {
     cursor: pointer;
 }
 
-.smalerSize {
-    font-weight: 400;
-    font-size: 1rem;
-}
-
 .position {
     display: none;
     position: fixed;
@@ -231,61 +226,6 @@ svg:hover {
     border-radius: 16px;
 }
 
-.closeCross {
-    display: none;
-    position: absolute;
-    z-index: 4;
-    top: 8px;
-    right: 8px;
-    width: 32px;
-    height: 32px;
-    opacity: 1;
-}
-
-.closeCross:before,
-.closeCross:after {
-    position: absolute;
-    left: 15px;
-    content: '';
-    height: 30px;
-    width: 3px;
-    background-color: #333;
-}
-
-.closeCross:before {
-    transform: rotate(45deg);
-}
-
-.closeCross:after {
-    transform: rotate(-45deg);
-}
-
-.closeCross:hover:before,
-.closeCross:hover:after {
-    background-color: white;
-}
-
-
-.arrow {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    z-index: 5;
-    filter: drop-shadow(8px 8px 24px rgba(0, 0, 0, 1));
-}
-
-.arrow:hover {
-    cursor: pointer;
-}
-
-.nameLinePosition {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 #back {
     left: -200px;
 }
@@ -295,198 +235,59 @@ svg:hover {
     transform: scaleX(-1);
 }
 
-.frameStrip {
-    width: 16px;
-    height: 400px;
-    background-color: white;
-    border-top-right-radius: 48px;
-    border-bottom-right-radius: 48px;
-    opacity: .8;
-}
-
-.smaler {
-    height: 340px;
-    opacity: 0.6;
-}
-
-.xsmaler {
-    height: 300px;
-    opacity: 0.5;
-}
-
-.xxsmaler {
-    height: 280px;
-    opacity: 0.4;
-}
-
-.xxxsmaler {
-    height: 260px;
-    opacity: 0.3;
-    margin-bottom: -4px;
-}
-
-.xxxxsmaler {
-    height: 244px;
-    opacity: 0.2;
-    margin-bottom: -4px;
-}
-
-.xxxxxsmaler {
-    height: 236px;
-    opacity: 0.1;
-    margin-bottom: -4px;
-}
-
-.mirror-horizontal {
-    transform: scaleX(-1);
-}
-
-.nameLine {
-    background-color: lightgray;
-    width: 100%;
-    max-width: 500px;
-    height: 56px;
-    border-radius: 16px 16px 48px 48px;
-    transition: background-color 1s linear;
-    animation: moveDown 1s linear;
-}
-
-@keyframes moveDown {
-    0% {
-        transform: translate(0%, -400px);
-    }
-}
-
-.imageOrder {
-    width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.imageContainer {
-    max-width: 260px;
-    max-height: 260px;
-    width: 100%;
-    height: 100%;
-    margin-top: 130px;
-    position: absolute;
-    z-index: 1;
-    border-radius: 10px;
+.active {
     animation: opacityUp 1.2s linear;
-    animation-iteration-count: 1;
-    filter: drop-shadow(-20px -20px 0px rgba(0, 0, 0, 0.5))
 }
 
 @keyframes opacityUp {
     0% {
         opacity: 0;
     }
-}
 
-.detailsOrder {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-color: lightblue;
-    border-radius: 48px 48px 16px 16px;
-}
-
-.btnCheckedDesign {
-    background-color: lightgray;
-    border-radius: 16px 16px 0 0;
-    cursor: default !important;
+    100% {
+        opacity: 1;
+    }
 }
 
 .pad-0-16 {
     padding: 0 16px;
 }
 
-.buttonsOrder {
-    width: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
 .cursor {
     cursor: pointer;
 }
 
-.stats {
-    width: 400px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    animation: moveUp 1s linear;
-}
-
-.basics {
-    width: 400px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    animation: moveUp 1s linear;
-    text-overflow: clip;
-}
-
-.evolution {
-    width: 100%;
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    animation: moveUp 1s linear;
-}
-
-.evolution img {
-    width: 80px;
-    height: 80px;
-}
-
-.statsNames {
-    text-wrap: nowrap;
-    width: 170px;
-}
-
 .dropDownList {
     max-height: 110px;
-    width: 188px;
+    max-width: 235px;
+    width: 100%;
     display: none;
     flex-direction: column;
     align-items: start;
-    margin-left: 48px;
     background-color: rgba(211, 211, 211, 1);
     overflow-y: auto;
+    overflow-x: hidden;
     position: fixed;
     z-index: 12;
 }
 
 .dropDownListLine {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
     cursor: pointer;
     padding: 0 8px;
 }
 
 .dropDownListLine:hover {
     cursor: pointer;
-    width: 100%;
+    padding-left: 20px;
     background-color: darkgray;
 }
 
-.dropDownListLine.active {
-    background-color: black;
+.dropDownListLine.focused {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .progress {
@@ -496,22 +297,6 @@ svg:hover {
 .progress {
     --bs-progress-border-radius: 0 !important;
     border-radius: 0 !important;
-}
-
-.statsTopOrder {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: lightgray;
-    border-radius: 48px 48px 16px 16px;
-    overflow: hidden;
-}
-
-.statsOrder {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
 }
 
 footer {
@@ -524,6 +309,7 @@ footer {
     bottom: 0;
     background-color: #333;
 }
+
 footer a {
     text-decoration: none;
     cursor: pointer;
@@ -537,104 +323,4 @@ footer a {
 
 .pokeBall {
     width: 150px;
-}
-
-
-@media screen and (max-height: 702px) {
-    .nameLine {
-        height: auto;
-    }
-
-    .morebtn {
-        margin-bottom: 60px;
-    }
-
-    footer {
-        height: 50px;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    #forward {
-        right: -150px;
-    }
-
-    #back {
-        left: -150px;
-    }
-}
-
-@media screen and (max-width: 850px) {
-    #forward {
-        right: 12px;
-    }
-
-    #back {
-        left: 12px;
-    }
-
-    .closeCross {
-        display: block;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .imageContainer {
-        max-width: 230px;
-        max-height: 230px;
-    }
-
-    .basicNames {
-        padding: 0px 8px;
-    }
-
-    .detailsOrder {
-        border-radius: 24px 24px 16px 16px;
-    }
-
-    .arrow {
-        width: 60px;
-        height: 60px;
-    }
-
-    .position {
-        overflow-y: auto;
-    }
-
-    .statsTopOrder {
-        border-radius: 24px 24px 16px 16px;
-    }
-
-    .evolution {
-        height: 400px;
-        flex-direction: column;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .logo {
-        display: none;
-    }
-
-    #pokemonCard {
-        margin: 0;
-    }
-
-    .statsOrder {
-        padding: 0 8px;
-    }
-
-    .basics {
-        font-size: small;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .imageContainer {
-        max-width: 200px;
-        max-height: 200px;
-    }
-    .dropDownList {
-        margin-left: 24px;
-    }
 }

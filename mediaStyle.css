@@ -1,0 +1,99 @@
+@media screen and (max-height: 702px) {
+    .nameLine {
+        height: auto;
+    }
+
+    .morebtn {
+        margin-bottom: 60px;
+    }
+
+    footer {
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #forward {
+        right: -150px;
+    }
+
+    #back {
+        left: -150px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    #forward {
+        right: 12px;
+    }
+
+    #back {
+        left: 12px;
+    }
+
+    .closeCross {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .imageContainer {
+        max-width: 230px;
+        max-height: 230px;
+    }
+
+    .basicNames {
+        padding: 0px 8px;
+    }
+
+    .detailsOrder {
+        border-radius: 24px 24px 16px 16px;
+    }
+
+    .arrow {
+        width: 60px;
+        height: 60px;
+    }
+
+    .position {
+        overflow-y: auto;
+    }
+
+    .statsTopOrder {
+        border-radius: 24px 24px 16px 16px;
+    }
+
+    .evolution {
+        height: 400px;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .logo {
+        display: none;
+    }
+
+    #pokemonCard {
+        margin: 0;
+    }
+
+    .statsOrder {
+        padding: 0 8px;
+    }
+
+    .basics {
+        font-size: small;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .imageContainer {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .dropDownList {
+        margin-left: 24px;
+    }
+}
