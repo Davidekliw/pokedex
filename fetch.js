@@ -4,11 +4,15 @@
  */
 async function loadAllPokemon() {
     try {
-        let response = await fetch(ALLURL);
-        let resultAllPokemons = await response.json();
-        for (let i = 0; i < resultAllPokemons['results'].length - 277; i++) {
+        const response = await fetch(ALLURL);
+        const resultAllPokemons = await response.json();
+        ids = resultAllPokemons.results.map(p => {
+            const parts = p.url.split('/').filter(Boolean);
+            return Number((parts[parts.length - 1]));
+        });
+        for (let i = 0; i < resultAllPokemons['results'].length; i++) {
             allPokemons.push({
-                'id': i,
+                'id': ids[i],
                 'nameEN': resultAllPokemons.results[i]['name'],
                 'link': resultAllPokemons.results[i]['url']
             });
@@ -50,21 +54,13 @@ function checkResponse(response) {
  */
 async function fetchPokeData(i) {
     try {
-        const [responsePokemon, responseSpecies] = await Promise.all([
-            fetch(POKEMONURL + i + "/"),
-            fetch(SPECIESURL + i + "/")
-        ]);
-        checkResponse(responsePokemon);
-        checkResponse(responseSpecies);
-        const [currentPokemon, currentSpecies] = await Promise.all([
-            responsePokemon.json(),
-            responseSpecies.json()
-        ]);
-        return { currentPokemon, currentSpecies };
+        const responsePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(r => r.json());
+        const responseSpecies = await fetch(responsePokemon.species.url).then(r => r.json());
+        return { responsePokemon, responseSpecies };
     }
     catch (innerError) {
         return { currentPokemon: null, currentSpecies: null };
-       
+
     }
 }
 
@@ -76,11 +72,12 @@ async function fetchPokeData(i) {
 async function fetchAndSetPokeData(i) {
     try {
         const result = await fetchPokeData(i);
-        currentPokemon = result.currentPokemon;
-        currentSpecies = result.currentSpecies;
+        currentPokemon = result.responsePokemon;
+        currentSpecies = result.responseSpecies;
     }
     catch (innerError) {
         console.error("Fehler in fetchPokeData:", error);
+        return { currentPokemon: null, currentSpecies: null };
     }
 }
 
@@ -102,10 +99,8 @@ async function getBorder() {
  * @returns - a calculatet number
  */
 async function generateLastPokemonID() {
-    let lastOne = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
-    lastOne = await lastOne.json();
-    lastOne = lastOne.count - 326;
-    return lastOne;
+    lastId = ids[ids.length-1];
+    return lastId;
 }
 
 /**
