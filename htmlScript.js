@@ -47,22 +47,6 @@ function generateNameLineHTML(clickedLocation) {
 }
 
 /**
- * is used to change the highlighted element on the lower section of Pokemon Details Card. the function set style elemente depending on the order of the passed values
- * 
- * @param {String*} first - is the first part of the first id name
- * @param {string} second - is the first part of the second id name
- * @param {string} third - is the first part of the third id name
- */
-async function showSelectedInformation(first, second, third) {
-    document.getElementById(`${first}Button`).classList.add('btnCheckedDesign');
-    document.getElementById(first).classList.remove('d-none');
-    document.getElementById(`${second}Button`).classList.remove('btnCheckedDesign');
-    document.getElementById(second).classList.add('d-none');
-    document.getElementById(`${third}Button`).classList.remove('btnCheckedDesign');
-    document.getElementById(third).classList.add('d-none');
-}
-
-/**
  * is used to generate HTML Code  to show a Pokemon image with name and number for a small view of the Pokemon evolution chain
  * if Variables are null it gives a fall Back option
  * 
