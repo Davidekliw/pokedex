@@ -93,7 +93,7 @@ function search(params) {
         let searchfield = allPokemons.filter(pokemon => pokemon.nameEN.toLowerCase().includes(params.toLowerCase()));
         for (let i = 0; i < searchfield.length; i++) {
             const element = searchfield[i];
-            ddSearchList.innerHTML += `<div onclick=loadSearchElement(${element.id + 1}) class="dropDownListLine">${element.id + 1} - ${writeTheFirstBig(element.nameEN)}</div>`;
+            ddSearchList.innerHTML += `<div onclick=loadSearchElement(${element.id}) class="dropDownListLine">${element.id} - ${writeTheFirstBig(element.nameEN)}</div>`;
         }
     }
 }
@@ -246,7 +246,7 @@ async function renderCard(numb) {
     await fetchAndSetPokeData(numb);
     if (variablesAreNull()) {
         closeWindow();
-        alert("Something went wrong. No Data found.");
+        console.error("Something went wrong. No Data found.");
         toogleLoadScreen('none');
         return;
     }
